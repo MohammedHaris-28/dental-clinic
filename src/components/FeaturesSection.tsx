@@ -1,103 +1,136 @@
-
+import React from "react";
 import { motion } from "framer-motion";
 import {
   Sparkles,
-  ShieldPlus,
+  ShieldCheck,
+  Activity,
   Smile,
   Baby,
   Stethoscope,
-  HeartPulse,
-  ScanLine,
-  PenTool,
+  Layers,
+  Sparkle,
+  ArrowRight,
+  Eye,
+  Crown,
+  Maximize2,
+  Bookmark
 } from "lucide-react";
 
+// Curated data matrix precisely covering items from image_13e9e5.png
 const services = [
   {
-    icon: ShieldPlus,
+    icon: ShieldCheck,
     title: "Dental Implants",
-    description:
-      "Permanent and natural-looking tooth replacement solutions designed for comfort and confidence.",
+    description: "Permanent, medically certified tooth replacements engineered with structural precision to completely restore natural bite architecture.",
+    tag: "Restorative Mastery",
+    featured: true, // Takes up more space for premium layout variety
   },
   {
-    icon: HeartPulse,
+    icon: Layers,
+    title: "Dental Laminates", // From image_13e9e5.png
+    description: "Ultra-thin, custom-crafted premium porcelain veneers designed to flawlessly correct severe chips, intrinsic stains, and structural gaps.",
+    tag: "Elite Aesthetics",
+    featured: false,
+  },
+  {
+    icon: Activity,
     title: "Root Canal Treatment",
-    description:
-      "Advanced pain-free procedures to save infected teeth and restore oral health.",
-  },
-  {
-    icon: Sparkles,
-    title: "Teeth Whitening",
-    description:
-      "Professional whitening treatments for a brighter and more confident smile.",
-  },
-  {
-    icon: PenTool,
-    title: "Dental Braces",
-    description:
-      "Modern orthodontic treatments to align teeth and improve bite function.",
+    description: "Advanced micro-endodontic therapy targeting deep pulp infections with advanced pain-free technology.",
+    tag: "Clinical Precision",
+    featured: false,
   },
   {
     icon: Smile,
-    title: "Smile Makeover",
-    description:
-      "Comprehensive cosmetic dental solutions tailored to enhance your smile.",
+    title: "Cosmetic Dentistry", // From image_13e9e5.png
+    description: "Bespoke structural makeovers combining whitening, composite contouring, and alignment frameworks for breathtaking transformations.",
+    tag: "Visual Design",
+    featured: false,
+  },
+  {
+    icon: Crown,
+    title: "Premium Crowns", // From image_13e9e5.png
+    description: "Monolithic zirconia and E-Max structural caps tailored carefully to reinforce decayed or damaged teeth with natural light reflectivity.",
+    tag: "Structural Integrity",
+    featured: false,
+  },
+  {
+    icon: Maximize2,
+    title: "Bite & Spacing Correction", // Covers Deep Bite, Spacing from image_13e9e5.png
+    description: "Targeted cosmetic and interceptive orthodontic systems engineered to seamlessly resolve structural diastemas and complex deep overbites.",
+    tag: "Bite Architecture",
+    featured: true,
+  },
+  {
+    icon: Sparkle,
+    title: "Orthodontics & Fluorosis", // Covers Orthodontics, Dental Fluorosis from image_13e9e5.png
+    description: "Advanced clinical micro-abrasion treatments for complex fluorosis enamel stains paired with premium ceramic teeth alignment tracks.",
+    tag: "Enamel Care",
+    featured: false,
   },
   {
     icon: Baby,
-    title: "Pediatric Dentistry",
-    description:
-      "Gentle and caring dental treatments designed specifically for children.",
-  },
-  {
-    icon: ScanLine,
-    title: "Tooth Extraction",
-    description:
-      "Safe and comfortable extraction procedures using modern dental techniques.",
+    title: "Early Childhood Caries", // From image_13e9e5.png
+    description: "Specialized non-invasive pediatric therapies to intercept developmental decay and carefully preserve foundational primary teeth.",
+    tag: "Pediatric Intercept",
+    featured: false,
   },
   {
     icon: Stethoscope,
-    title: "General Dental Checkup",
-    description:
-      "Routine examinations and preventive care to maintain long-term oral health.",
+    title: "General & Preventative Dentistry", // Covers General Dentistry, Dental Treatments from image_13e9e5.png
+    description: "Comprehensive molecular oral screening, dynamic diagnostic cleanings, and proactive therapy to stop disease vectors before they start.",
+    tag: "Absolute Prevention",
+    featured: false,
   },
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="relative py-24 overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+    <section className="relative py-28 bg-white overflow-hidden antialiased selection:bg-emerald-500/10">
+      {/* Premium Ambient Background Spotlights */}
+      <div className="absolute top-1/4 left-[-10%] w-[500px] h-[500px] bg-emerald-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-[-10%] w-[600px] h-[600px] bg-teal-500/[0.04] rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-16"
-        >
-          <span className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-5">
-            Our Treatments
-          </span>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Elite Header */}
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200/60 text-emerald-800 text-xs font-bold tracking-widest uppercase mb-6"
+          >
+            <Sparkles size={12} className="text-emerald-500 animate-pulse" />
+            <span>Clinical Treatments Portfolio</span>
+          </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Complete Dental Care
-            <span className="block text-primary">
-              For Every Smile
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tighter leading-none"
+          >
+            Elite Dental Architecture. <br />
+            <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
+              Engineered For Perfection.
             </span>
-          </h2>
+          </motion.h2>
 
-          <p className="mt-5 text-lg text-muted-foreground leading-relaxed">
-            From preventive care to advanced restorative and cosmetic
-            dentistry, we offer comprehensive treatments tailored to
-            every stage of your oral health journey.
-          </p>
-        </motion.div>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-6 text-slate-500 text-base sm:text-lg font-medium max-w-2xl mx-auto leading-relaxed"
+          >
+            Experience dental care operating at absolute clinical mastery. From advanced cosmetic veneers to complex structural implant surgeries, we design smiles with flawless biometric accuracy.
+          </motion.p>
+        </div>
 
-        {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        {/* Re-Engineered Asymmetric Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
           {services.map((service, index) => {
             const Icon = service.icon;
 
@@ -107,33 +140,42 @@ const ServicesSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.05,
-                }}
-                className="group relative overflow-hidden rounded-3xl border border-border/40 bg-background/70 backdrop-blur-xl p-6 hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
+                transition={{ duration: 0.6, delay: index * 0.04 }}
+                className={`group relative overflow-hidden rounded-[32px] border border-slate-100 bg-slate-50/40 p-8 flex flex-col justify-between transition-all duration-500 hover:border-emerald-500/30 hover:bg-white hover:-translate-y-1.5 hover:shadow-[0_24px_70px_rgba(15,23,42,0.06)] ${
+                  service.featured ? "md:col-span-2 lg:col-span-2" : "col-span-1"
+                }`}
               >
-                {/* Hover Glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/5 to-transparent" />
+                {/* Micro Ambient Hover Overlay */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-emerald-500/[0.02] via-transparent to-transparent pointer-events-none" />
 
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
-                    <Icon className="w-7 h-7 text-primary" />
+                <div>
+                  {/* Top Line Card Indicator */}
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="w-12 h-12 rounded-2xl bg-white shadow-sm border border-slate-100 flex items-center justify-center text-slate-800 group-hover:text-emerald-600 group-hover:border-emerald-500/20 transition-all duration-300">
+                      <Icon className="w-5 h-5 transition-transform duration-500 group-hover:scale-110" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-100/80 px-3 py-1 rounded-full group-hover:bg-emerald-50 group-hover:text-emerald-700 transition-colors duration-300">
+                      {service.tag}
+                    </span>
                   </div>
 
-                  <h3 className="text-xl font-semibold mb-3">
+                  {/* Text Suite */}
+                  <h3 className="text-xl font-black text-slate-900 tracking-tight mb-3">
                     {service.title}
                   </h3>
 
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className={`text-slate-500 text-sm leading-relaxed ${service.featured ? "max-w-2xl" : "max-w-none"}`}>
                     {service.description}
                   </p>
+                </div>
 
-                  <div className="mt-6 flex items-center text-primary text-sm font-medium">
-                    Learn More
-                    <span className="ml-2 transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
+                {/* Learn More Interactive Action Trigger */}
+                <div className="mt-8 pt-4 border-t border-slate-100/60 flex items-center justify-between text-slate-800 text-xs font-bold uppercase tracking-wider group-hover:text-emerald-600 transition-colors duration-300">
+                  <span className="flex items-center gap-1.5">
+                    Explore Treatment Framework
+                  </span>
+                  <div className="w-7 h-7 rounded-full bg-white border border-slate-100 flex items-center justify-center transition-all duration-300 group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900 group-hover:translate-x-0.5">
+                    <ArrowRight size={12} />
                   </div>
                 </div>
               </motion.div>
@@ -141,47 +183,53 @@ const ServicesSection = () => {
           })}
         </div>
 
-        {/* Bottom Trust Strip */}
+        {/* Premium Bottom Interactive Strip: Case Blogs & Trust Metrics */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="mt-16 rounded-3xl border border-border/40 bg-background/60 backdrop-blur-xl p-8"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mt-20 rounded-[36px] border border-slate-100 bg-slate-50/50 p-8 sm:p-10 flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-between shadow-sm"
         >
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <h3 className="text-3xl font-bold text-primary">
-                5000+
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Successful Treatments
-              </p>
+          {/* Case Blogs Interactive Callout (From image_13e9e5.png) */}
+          <div className="flex items-center gap-5 text-left w-full lg:w-auto">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-500 flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-emerald-500/20">
+              <Bookmark className="w-5 h-5" />
             </div>
-
             <div>
-              <h3 className="text-3xl font-bold text-primary">
-                10+
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Years of Experience
-              </p>
+              <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-emerald-600 mb-0.5">
+                <span className="w-1 h-1 rounded-full bg-emerald-500 animate-ping" />
+                Live Case Records
+              </div>
+              <h4 className="font-black text-slate-900 text-lg tracking-tight leading-tight">Explore verified Clinical Case Blogs</h4>
+              <p className="text-slate-400 text-xs mt-1 font-medium">Real microscopic transformations documented by our surgeons.</p>
             </div>
+          </div>
 
+          <div className="h-px w-full lg:h-12 lg:w-px bg-slate-200/80" />
+
+          {/* Elite Verified Trust Pillars */}
+          <div className="grid grid-cols-3 gap-6 sm:gap-12 text-center lg:text-left w-full lg:w-auto justify-around">
             <div>
-              <h3 className="text-3xl font-bold text-primary">
-                4.9★
-              </h3>
-              <p className="text-muted-foreground mt-2">
-                Patient Satisfaction
-              </p>
+              <h5 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">25k+</h5>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Successful Procedures</p>
+            </div>
+            <div>
+              <h5 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">18+</h5>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Years of Practice</p>
+            </div>
+            <div>
+              <h5 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-center justify-center lg:justify-start gap-0.5">
+                4.9<span className="text-emerald-500 text-xl sm:text-2xl">★</span>
+              </h5>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Patient Satisfaction</p>
             </div>
           </div>
         </motion.div>
+
       </div>
     </section>
   );
 };
 
 export default ServicesSection;
-

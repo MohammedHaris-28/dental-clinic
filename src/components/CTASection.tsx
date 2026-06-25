@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -7,6 +6,8 @@ import {
   MessageCircle,
   Clock3,
   ShieldCheck,
+  Sparkles,
+  ArrowUpRight
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -21,210 +22,193 @@ const AppointmentCTA = () => {
     message: "",
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     const whatsappNumber = "YOUR_WHATSAPP_NUMBER";
 
     const text = `
 🦷 New Appointment Request
 
 👤 Name: ${form.name}
-
 📞 Phone: ${form.phone}
-
 🩺 Treatment: ${form.treatment}
 
 💬 Message:
 ${form.message}
 `;
 
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      text
-    )}`;
-
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text.trim())}`;
     window.open(url, "_blank");
   };
 
   return (
-    <section className="relative py-24 overflow-hidden">
-      {/* Background Effects */}
-
-      <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-primary/10 rounded-full blur-3xl" />
-
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="rounded-[40px] border border-border/40 bg-background/70 backdrop-blur-xl overflow-hidden">
-          <div className="grid lg:grid-cols-2">
-            {/* LEFT */}
-
-            <div className="p-8 md:p-12 lg:p-14">
+    <section className="relative py-20 lg:py-28 bg-white overflow-hidden antialiased selection:bg-emerald-500/10">
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Core Content Shell with Premium Subtle Contrast */}
+        <div className="rounded-[40px] border border-slate-100 bg-slate-50/50 overflow-hidden shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+            
+            {/* LEFT SIDE: Brand Value Statements */}
+            <div className="lg:col-span-6 p-8 md:p-14 lg:p-16 flex flex-col justify-between bg-white">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="space-y-6"
               >
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                  <Calendar size={16} />
-                  Book Your Appointment
-                </span>
+                {/* Clean Tag Badge */}
+                <div className="self-start inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200/60 text-emerald-800 text-xs font-bold tracking-widest uppercase">
+                  <Sparkles size={13} className="text-emerald-500" />
+                  <span>Direct Booking Suite</span>
+                </div>
 
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight mt-6">
-                  Ready For A
-                  <span className="block text-primary">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tighter leading-[1.1]">
+                  Ready For A{" "}
+                  <span className="block mt-1 bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
                     Healthier Smile?
                   </span>
                 </h2>
 
-                <p className="mt-5 text-muted-foreground text-lg leading-relaxed">
-                  Schedule your consultation today and receive
-                  personalized dental care from experienced professionals.
+                <p className="text-slate-500 text-sm sm:text-base font-medium max-w-xl leading-relaxed sm:leading-loose">
+                  Schedule your consultation instantly over our verified concierge channel and receive boutique medical-grade dental care driven by absolute mastery.
                 </p>
 
-                <div className="space-y-5 mt-10">
-                  <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Clock3 className="text-primary" />
+                {/* Highly Balanced Bullet Framework */}
+                <div className="space-y-6 pt-6 border-t border-slate-100">
+                  <div className="flex items-start gap-4">
+                    <div className="w-11 h-11 shrink-0 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600">
+                      <Clock3 size={18} />
                     </div>
-
                     <div>
-                      <h4 className="font-semibold">
-                        Flexible Scheduling
-                      </h4>
-
-                      <p className="text-sm text-muted-foreground">
-                        Convenient appointment slots available.
+                      <h4 className="font-bold text-slate-800 text-sm sm:text-base">Flexible Scheduling</h4>
+                      <p className="text-xs sm:text-sm text-slate-400 font-medium mt-0.5">
+                        Priority and weekend dental care openings available.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <ShieldCheck className="text-primary" />
+                  <div className="flex items-start gap-4">
+                    <div className="w-11 h-11 shrink-0 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600">
+                      <ShieldCheck size={18} />
                     </div>
-
                     <div>
-                      <h4 className="font-semibold">
-                        Safe & Professional Care
-                      </h4>
-
-                      <p className="text-sm text-muted-foreground">
-                        Modern facilities and hygienic environment.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Phone className="text-primary" />
-                    </div>
-
-                    <div>
-                      <h4 className="font-semibold">
-                        Quick Response
-                      </h4>
-
-                      <p className="text-sm text-muted-foreground">
-                        Our team will contact you shortly.
+                      <h4 className="font-bold text-slate-800 text-sm sm:text-base">Safe & Certified Environment</h4>
+                      <p className="text-xs sm:text-sm text-slate-400 font-medium mt-0.5">
+                        Advanced structural sterilization matrix protocols.
                       </p>
                     </div>
                   </div>
                 </div>
+              </motion.div>
 
-                {/* Emergency Card */}
-
-                <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/5 p-5">
-                  <p className="text-sm text-muted-foreground">
-                    Need immediate assistance?
-                  </p>
-
-                  <h3 className="font-bold text-xl mt-1">
-                    +91 XXXXX XXXXX
-                  </h3>
+              {/* Minimal Emergency Quick Access Panel */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="mt-12 p-5 rounded-[24px] border border-slate-200/60 bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              >
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Need Immediate Advice?</p>
+                  <h3 className="font-black text-xl text-slate-900 mt-1 tracking-tight">+91 XXXXX XXXXX</h3>
                 </div>
+                <Button 
+                  variant="outline" 
+                  className="rounded-full bg-white h-11 px-5 text-xs font-bold border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm active:scale-95 transition-transform"
+                  onClick={() => window.open('tel:+91XXXXXXXXXX')}
+                >
+                  <Phone size={14} className="mr-2 text-emerald-600" />
+                  Voice Concierge
+                </Button>
               </motion.div>
             </div>
 
-            {/* RIGHT FORM */}
-
-            <div className="p-8 md:p-12 lg:p-14 bg-background/30">
+            {/* RIGHT SIDE: Dedicated Clean Form Panel */}
+            <div className="lg:col-span-6 p-8 md:p-14 lg:p-16 flex flex-col justify-center bg-slate-50/60 border-t lg:border-t-0 lg:border-l border-slate-100">
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="w-full max-w-md mx-auto lg:mx-0"
               >
-                <h3 className="text-2xl font-bold mb-6">
-                  Request Appointment
-                </h3>
+                <div className="mb-8 text-center lg:text-left">
+                  <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+                    Request Appointment
+                  </h3>
+                  <p className="text-slate-400 text-xs font-semibold mt-1">
+                    Fill out your data to instantly render a digital referral note.
+                  </p>
+                </div>
 
-                <div className="space-y-5">
-                  <Input
-                    placeholder="Full Name"
-                    value={form.name}
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        name: e.target.value,
-                      })
-                    }
-                    className="h-12 rounded-xl"
-                  />
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <Input
+                      type="text"
+                      required
+                      placeholder="Full Name"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className="h-13 px-4 rounded-xl border-slate-200/80 bg-white placeholder:text-slate-400 font-medium text-slate-800 shadow-sm focus-visible:ring-emerald-500 focus-visible:border-emerald-500 transition-all duration-200"
+                    />
+                  </div>
 
-                  <Input
-                    placeholder="Phone Number"
-                    value={form.phone}
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        phone: e.target.value,
-                      })
-                    }
-                    className="h-12 rounded-xl"
-                  />
+                  <div>
+                    <Input
+                      type="tel"
+                      required
+                      placeholder="Phone Number"
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      className="h-13 px-4 rounded-xl border-slate-200/80 bg-white placeholder:text-slate-400 font-medium text-slate-800 shadow-sm focus-visible:ring-emerald-500 focus-visible:border-emerald-500 transition-all duration-200"
+                    />
+                  </div>
 
-                  <Input
-                    placeholder="Treatment Needed"
-                    value={form.treatment}
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        treatment: e.target.value,
-                      })
-                    }
-                    className="h-12 rounded-xl"
-                  />
+                  <div>
+                    <Input
+                      type="text"
+                      required
+                      placeholder="Treatment Needed (e.g., Implant, Consultation)"
+                      value={form.treatment}
+                      onChange={(e) => setForm({ ...form, treatment: e.target.value })}
+                      className="h-13 px-4 rounded-xl border-slate-200/80 bg-white placeholder:text-slate-400 font-medium text-slate-800 shadow-sm focus-visible:ring-emerald-500 focus-visible:border-emerald-500 transition-all duration-200"
+                    />
+                  </div>
 
-                  <Textarea
-                    placeholder="Tell us about your concern..."
-                    value={form.message}
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        message: e.target.value,
-                      })
-                    }
-                    className="rounded-xl min-h-[140px]"
-                  />
+                  <div>
+                    <Textarea
+                      placeholder="Tell us about your concern..."
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      className="p-4 rounded-xl border-slate-200/80 bg-white placeholder:text-slate-400 font-medium text-slate-800 shadow-sm min-h-[120px] focus-visible:ring-emerald-500 focus-visible:border-emerald-500 transition-all duration-200 resize-none"
+                    />
+                  </div>
 
                   <Button
-                    onClick={handleSubmit}
-                    className="w-full h-14 rounded-xl text-base font-semibold"
+                    type="submit"
+                    className="w-full h-14 rounded-xl bg-slate-900 hover:bg-slate-950 text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2.5 shadow-md active:scale-[0.99] transition-all border-0 group mt-2"
                   >
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    Send via WhatsApp
+                    <MessageCircle size={16} className="text-emerald-400 group-hover:rotate-12 transition-transform" />
+                    <span>Send via WhatsApp</span>
+                    <ArrowUpRight size={15} className="text-slate-400 group-hover:text-white transition-colors" />
                   </Button>
 
-                  <p className="text-xs text-center text-muted-foreground">
-                    By submitting this form, you agree to be contacted
-                    regarding your appointment request.
+                  <p className="text-[11px] text-center text-slate-400 font-medium leading-relaxed pt-2">
+                    By submitting, you agree to route secure triage data to Chisel Dental clinical officers.
                   </p>
-                </div>
+                </form>
               </motion.div>
             </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );
 };
 
 export default AppointmentCTA;
-

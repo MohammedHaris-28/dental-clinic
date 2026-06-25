@@ -40,3 +40,57 @@
 .read-the-docs {
   color: #888;
 }
+/* Base custom variables and pseudo elements for card outlines */
+.magic-bento-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 300px;
+  --glow-color: 16, 185, 129;
+  position: relative;
+}
+
+/* Border Mask Engine tracking variables mapped via React */
+.magic-bento-card--border-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px; /* Control crispness of border width here */
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.45)),
+    transparent
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* Underlying radial card sheen highlight layer */
+.magic-bento-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.06)),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle mix blend mode optimization for global spotlights */
+.global-spotlight {
+  will-change: left, top, opacity;
+  transform: translate(-50%, -50%);
+}
+
+.particle {
+  will-change: transform, opacity;
+}
