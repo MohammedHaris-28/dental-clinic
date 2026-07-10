@@ -5,7 +5,7 @@ import {
   GraduationCap,
   Award,
 } from "lucide-react";
-import doctorHero from "src/assets/doctor-hero.png";
+import doctorHero from "../assets/doctor-hero.png";
 
 const DOCTOR_DATA = {
   name: "Dr. Ashwini Shetty",
