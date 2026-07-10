@@ -112,6 +112,14 @@ const Navbar = () => {
                 {item.label}
               </button>
             ))}
+            
+            {/* Direct Contact Route Trigger */}
+            <button
+              onClick={() => scrollTo("Contact")}
+              className="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-900 rounded-full hover:bg-white transition-all duration-200 uppercase tracking-wider"
+            >
+              Contact
+            </button>
           </div>
 
           {/* Desktop Call to Actions */}
@@ -125,12 +133,21 @@ const Navbar = () => {
             </button>
 
             <Button
-              onClick={() => scrollTo("Contact")}
-              className="rounded-full px-6 h-11 bg-slate-900 hover:bg-slate-950 text-white font-bold text-xs tracking-wider uppercase flex items-center gap-2 shadow-md shadow-slate-950/5 border-0 group active:scale-[0.98] transition-all"
-            >
-              <Calendar size={14} className="text-amber-400 group-hover:rotate-12 transition-transform" />
-              <span>Book Appointment</span>
-            </Button>
+  onClick={() =>
+    window.open(
+      "https://click4appointment.com/book-appointment-guest/959570/3914",
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
+  className="rounded-full px-6 h-11 bg-slate-900 hover:bg-slate-950 text-white font-bold text-xs tracking-wider uppercase flex items-center gap-2 shadow-md shadow-slate-950/5 border-0 group active:scale-[0.98] transition-all"
+>
+  <Calendar
+    size={14}
+    className="text-amber-400 group-hover:rotate-12 transition-transform"
+  />
+  <span>Book Appointment</span>
+</Button>
           </div>
 
           {/* Mobile Menu Action Toggle */}
@@ -164,6 +181,13 @@ const Navbar = () => {
                   </button>
                 ))}
 
+                <button
+                  onClick={() => scrollTo("Contact Us")}
+                  className="text-left px-4 py-3 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-all uppercase tracking-wider"
+                >
+                  Contact
+                </button>
+
                 {/* Mobile Extra Navigation Integration */}
                 <div className="mt-2 pt-2 border-t border-slate-100 space-y-2">
                   <button
@@ -178,7 +202,7 @@ const Navbar = () => {
                   </button>
 
                   <Button
-                    onClick={() => scrollTo("Contact")}
+                    onClick={() => scrollTo("Contact Us")}
                     className="w-full rounded-xl h-12 bg-slate-900 hover:bg-slate-950 text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 border-0"
                   >
                     <Calendar size={14} className="text-amber-400" />

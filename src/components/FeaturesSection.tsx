@@ -220,7 +220,7 @@ const ServicesSection = () => {
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Successful Procedures</p>
             </div>
             <div>
-              <h5 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">5+</h5>
+              <h5 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">13+</h5>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Years of Practice</p>
             </div>
             <div>

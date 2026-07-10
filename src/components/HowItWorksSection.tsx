@@ -12,7 +12,7 @@ const DOCTOR_DATA = {
   title: "Chief Dentist",
   credentials: "BDS, MDS (Orthodontist)",
   institution: "Specialist in Advanced Orthodontic Frameworks & Dentofacial Orthopedics",
-  bio: "As the Chief Dentist at Chisel Dental, Dr. Ashwini Shetty combines comprehensive clinical expertise with advanced specialization in orthodontics. She designs custom alignment tracks and corrective architectural systems to build structurally flawless, healthy smiles.",
+  bio: "As the Chief Dentist at Pro-Smile Dental & Orthodontic Centre, Dr. Ashwini Shetty combines comprehensive clinical expertise with advanced specialization in orthodontics. She designs custom alignment tracks and corrective architectural systems to build structurally flawless, healthy smiles.",
   specialties: ["Orthodontic Mechanics", "Dentofacial Orthopedics", "Aesthetic Alignment Systems", "Comprehensive Oral Care"],
   metric: "Master of Dental Surgery"
 };
@@ -46,7 +46,7 @@ const DoctorProfileSection = () => {
             </span>
           </h2>
           <p className="mt-4 text-slate-500 text-base font-medium max-w-xl mx-auto">
-            Meet the chief expert shaping aesthetic, alignment, and structural restorative workflows at Chisel Dental.
+            Meet the chief expert shaping aesthetic, alignment, and structural restorative workflows at Pro-Smile Dental & Orthodontic Centre.
           </p>
         </div>
 

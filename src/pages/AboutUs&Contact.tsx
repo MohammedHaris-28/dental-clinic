@@ -12,7 +12,10 @@ import {
   Facebook,
   CalendarCheck2,
   ArrowRight,
+  ArrowUpRight,
+  Calendar,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ContactSection = () => {
   // Pro-Smile Clinic Details
@@ -170,8 +173,35 @@ const ContactSection = () => {
                   </div>
                 </div>
               </motion.div>
-            </div>
+               <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:max-w-md lg:max-w-none mx-auto lg:mx-0"
+            >
+              <Button
+  size="lg"
+  onClick={() =>
+    window.open(
+      "https://click4appointment.com/book-appointment-guest/959570/3914",
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
+  className="w-full sm:w-auto rounded-full px-8 h-16 bg-slate-900 hover:bg-slate-950 text-white font-bold text-sm tracking-wide flex items-center justify-center gap-3 shadow-xl shadow-slate-950/10 active:scale-[0.98] transition-all duration-200 border-0 group"
+>
+  <Calendar className="h-4 w-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+  <span>Book Appointment Through Click4Appointment</span>
+  <ArrowUpRight
+    size={16}
+    className="text-slate-400 group-hover:text-white transition-all"
+  />
+</Button>
 
+            
+            </motion.div>
+            </div>
+             
             {/* Right Side: Appointment Router & Map Components */}
             <div className="lg:col-span-7 space-y-4 sm:space-y-6">
               

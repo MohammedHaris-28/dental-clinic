@@ -158,7 +158,7 @@ const WhyChooseUsSection = () => {
 
                 <div className="rounded-2xl bg-white border border-slate-200/40 p-4 shadow-sm shadow-slate-900/[0.01]">
                   <h4 className="text-2xl sm:text-3xl font-black text-amber-600 tracking-tight">
-                    5+ Yrs
+                    13+ Yrs
                   </h4>
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">
                     Clinical Legacy

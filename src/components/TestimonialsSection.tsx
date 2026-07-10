@@ -16,28 +16,28 @@ const RECENT_TESTIMONIALS = [
     role: "Patient (Tooth Cleaning)",
     review: "I recently visited Pro-Smile Dental & Orthodontic Centre for a tooth cleaning. At first, I felt a bit anxious, but Dr. Ashwini and her team made me feel completely at ease. The clinic was spotless, the staff was polite, and the procedure was quick and painless. I’m very satisfied with the results and would gladly recommend their services to anyone in need of dental care🤩🤩",
     color: "from-amber-500/10 to-orange-500/[0.02]",
-    link: "https://share.google/qhfm2hewRXGvpM4UT"
+   
   },
   {
     name: "Darshan Krishnan",
     role: "Patient (Invisalign Treatment)",
     review: "I visited this clinic for Invisalign treatment and I’m extremely satisfied. The orthodontist explained the complete process, duration, and expected results in a very professional way. The digital scanning and treatment planning were impressive. The staff is friendly and appointments are well organized. If you’re planning for clear aligners, this is the right place.",
     color: "from-amber-600/10 to-amber-500/[0.02]",
-    link: "https://share.google/WF5eN69f5Q7eoU2L1"
+
   },
   {
     name: "Prasad Hegde",
     role: "Patient (Wisdom Tooth Extraction)",
     review: "Dr. Ashwini and her team helped with my wisdom tooth extraction. They explained me the process, risks involved and gave me an accurate recovery timeline. The extraction procedure went as per plan and i am happy with the outcome.",
     color: "from-amber-700/10 to-orange-600/[0.02]",
-    link: "https://share.google/CQa8pDHTTAk04PIPt"
+  
   },
   {
     name: "Darshan A C",
     role: "Parent (Pediatric Care)",
     review: "Visited for my 4 year old Son. Doctor is very professional and have lot of patience to treat kids.",
     color: "from-slate-500/10 to-amber-500/[0.02]",
-    link: "https://share.google/jOsFT3fbbdCH5hDJ4"
+  
   },
   {
     name: "Sujal Gowda",

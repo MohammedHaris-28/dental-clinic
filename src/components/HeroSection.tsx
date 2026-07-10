@@ -396,14 +396,23 @@ const AdaptiveBentoHero = () => {
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:max-w-md lg:max-w-none mx-auto lg:mx-0"
             >
               <Button
-                size="lg"
-                onClick={() => navigate("/contact")}
-                className="w-full sm:w-auto rounded-full px-8 h-16 bg-slate-900 hover:bg-slate-950 text-white font-bold text-sm tracking-wide flex items-center justify-center gap-3 shadow-xl shadow-slate-950/10 active:scale-[0.98] transition-all duration-200 border-0 group"
-              >
-                <Calendar className="h-4 w-4 text-amber-400 group-hover:rotate-12 transition-transform" />
-                <span>Book Appointment</span>
-                <ArrowUpRight size={16} className="text-slate-400 group-hover:text-white transition-all" />
-              </Button>
+  size="lg"
+  onClick={() =>
+    window.open(
+      "https://click4appointment.com/book-appointment-guest/959570/3914",
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
+  className="w-full sm:w-auto rounded-full px-8 h-16 bg-slate-900 hover:bg-slate-950 text-white font-bold text-sm tracking-wide flex items-center justify-center gap-3 shadow-xl shadow-slate-950/10 active:scale-[0.98] transition-all duration-200 border-0 group"
+>
+  <Calendar className="h-4 w-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+  <span>Book Appointment</span>
+  <ArrowUpRight
+    size={16}
+    className="text-slate-400 group-hover:text-white transition-all"
+  />
+</Button>
 
               {/* Direct Native Anchor Action Routing to Reception Line */}
               <a href="tel:+918971619006" className="w-full sm:w-auto">
@@ -430,7 +439,7 @@ const AdaptiveBentoHero = () => {
               </div>
               <div className="h-8 w-px bg-slate-200" />
               <div>
-                <span className="block text-xl sm:text-3xl font-black text-slate-900 tracking-tight">5+</span>
+                <span className="block text-xl sm:text-3xl font-black text-slate-900 tracking-tight">13+</span>
                 <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Years Experience</span>
               </div>
               <div className="h-8 w-px bg-slate-200" />
