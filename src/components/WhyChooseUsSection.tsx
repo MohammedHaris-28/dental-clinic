@@ -52,11 +52,11 @@ const WhyChooseUsSection = () => {
   return (
     <section 
       id="why-choose-us" 
-      className="relative py-20 lg:py-28 overflow-hidden bg-white border-t border-slate-100/60 antialiased selection:bg-emerald-500/10"
+      className="relative py-20 lg:py-28 overflow-hidden bg-white border-t border-slate-100/60 antialiased selection:bg-amber-500/10"
     >
-      {/* Background Soft Ambient Orbs */}
-      <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-teal-500/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Smooth Yellowish Orange Background Ambient Orbs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/[0.03] rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-amber-600/[0.04] rounded-full blur-[110px] pointer-events-none" />
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -68,13 +68,13 @@ const WhyChooseUsSection = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="max-w-3xl mx-auto text-center mb-16 lg:mb-20"
         >
-          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200/60 text-slate-800 text-xs font-bold uppercase tracking-widest mb-5">
+          <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-amber-500/[0.06] border border-amber-500/20 text-amber-900 text-xs font-bold uppercase tracking-widest mb-5 shadow-sm shadow-amber-500/[0.01]">
             Why Patients Trust Us
           </span>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
             Exceptional Clinical Care
-            <span className="block text-emerald-600 mt-1">
+            <span className="block bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 bg-clip-text text-transparent mt-1">
               With A Premium Touch
             </span>
           </h2>
@@ -103,13 +103,15 @@ const WhyChooseUsSection = () => {
                     delay: index * 0.05,
                     ease: "easeOut"
                   }}
-                  className="group rounded-[24px] border border-slate-200/60 bg-white p-6 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/[0.03]"
+                  className="group rounded-[24px] border border-slate-200/60 bg-white p-6 hover:border-amber-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-950/[0.03]"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-slate-50 border border-slate-200/50 flex items-center justify-center mb-5 group-hover:bg-emerald-500/5 group-hover:border-emerald-500/20 transition-all duration-300">
-                    <Icon className="w-5 h-5 text-slate-700 group-hover:text-emerald-600 transition-colors" />
+                  {/* Premium Micro-Container with Permanent Fill & Border */}
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/[0.06] border border-amber-500/20 flex items-center justify-center mb-5 group-hover:bg-amber-500/[0.12] group-hover:border-amber-500/30 transition-all duration-300 group-hover:scale-105">
+                    {/* Permanently filled vector interior */}
+                    <Icon className="w-5 h-5 text-amber-600 fill-amber-500/20 group-hover:text-amber-700 group-hover:fill-amber-500/35 transition-all duration-300" />
                   </div>
 
-                  <h3 className="font-bold text-slate-900 text-base mb-2 group-hover:text-emerald-700 transition-colors">
+                  <h3 className="font-bold text-slate-900 text-base mb-2 group-hover:text-amber-800 transition-colors">
                     {feature.title}
                   </h3>
 
@@ -129,12 +131,12 @@ const WhyChooseUsSection = () => {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             className="lg:col-span-5 lg:sticky lg:top-28"
           >
-            <div className="rounded-[32px] border border-slate-200/60 bg-slate-50/50 backdrop-blur-xl p-6 sm:p-8 lg:p-10 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/[0.02] rounded-bl-full pointer-events-none" />
+            <div className="rounded-[32px] border border-slate-200/70 bg-slate-50/40 backdrop-blur-xl p-6 sm:p-8 lg:p-10 relative overflow-hidden shadow-sm shadow-slate-100 transition-all duration-400 hover:shadow-[0_30px_60px_-15px_rgba(217,119,6,0.08)]">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/[0.02] rounded-bl-full pointer-events-none" />
 
               <h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight tracking-tight">
                 Dedicated To Your
-                <span className="block text-emerald-600 mt-1">
+                <span className="block text-amber-700 mt-1">
                   Long-Term Oral Health
                 </span>
               </h3>
@@ -147,7 +149,7 @@ const WhyChooseUsSection = () => {
               <div className="grid grid-cols-2 gap-4 mt-8">
                 <div className="rounded-2xl bg-white border border-slate-200/40 p-4 shadow-sm shadow-slate-900/[0.01]">
                   <h4 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                    25K+
+                    10K+
                   </h4>
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">
                     Happy Patients
@@ -155,8 +157,8 @@ const WhyChooseUsSection = () => {
                 </div>
 
                 <div className="rounded-2xl bg-white border border-slate-200/40 p-4 shadow-sm shadow-slate-900/[0.01]">
-                  <h4 className="text-2xl sm:text-3xl font-black text-emerald-600 tracking-tight">
-                    20+ Yrs
+                  <h4 className="text-2xl sm:text-3xl font-black text-amber-600 tracking-tight">
+                    5+ Yrs
                   </h4>
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">
                     Clinical Legacy
@@ -164,8 +166,8 @@ const WhyChooseUsSection = () => {
                 </div>
 
                 <div className="rounded-2xl bg-white border border-slate-200/40 p-4 shadow-sm shadow-slate-900/[0.01]">
-                  <h4 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                    4.9★
+                  <h4 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-0.5">
+                    4.9<span className="text-amber-500 text-xl">★</span>
                   </h4>
                   <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">
                     Patient Rating
@@ -182,9 +184,9 @@ const WhyChooseUsSection = () => {
                 </div>
               </div>
 
-              {/* Founder Editorial Proclamation */}
-              <div className="mt-6 p-4 rounded-xl border border-slate-200/40 bg-white/70 backdrop-blur-sm relative">
-                <span className="absolute -top-3 left-4 px-2 py-0.5 rounded-md bg-emerald-500 text-[9px] font-black uppercase text-white tracking-widest">
+              {/* Leader Editorial Creed Badge */}
+              <div className="mt-6 p-4 rounded-xl border border-slate-200/50 bg-white shadow-sm relative group">
+                <span className="absolute -top-3 left-4 px-2.5 py-0.5 rounded-md bg-amber-600 text-[9px] font-black uppercase text-white tracking-widest shadow-sm shadow-amber-600/20">
                   Our Creed
                 </span>
                 <p className="italic text-xs sm:text-sm text-slate-500 font-medium leading-relaxed pt-1">

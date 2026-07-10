@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles, Calendar } from "lucide-react";
+import { Menu, X, Calendar, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/logo-dental.png";
 
+// Comprehensive section mapping across your landing ecosystem
 const navItems = [
-  "Services",
-  "Contact",
-  "Blogs",
+  { label: "Features", target: "Features" },
+  { label: "Process", target: "How It Works" },
+  { label: "Why Us", target: "Why Choose Us" },
+  { label: "Testimonials", target: "Testimonials" },
 ];
 
 const Navbar = () => {
@@ -32,45 +34,28 @@ const Navbar = () => {
 
     onScroll();
 
-    window.addEventListener("scroll", onScroll, {
-      passive: true,
-    });
-
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollTo = (id: string) => {
-    const sectionId = id.toLowerCase().replace(/ /g, "-");
+  const scrollTo = (target: string) => {
+    setOpen(false);
 
-    if (id === "Services" || id === "About Us") {
-      if (location.pathname !== "/") {
-        navigate(`/#${sectionId}`);
-      } else {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-      setOpen(false);
-      return;
-    }
-
-    if (id === "Contact") {
+    if (target === "Contact") {
       navigate("/contact");
-      setOpen(false);
       return;
     }
 
-    // Default Fallback
+    const sectionId = target.toLowerCase().replace(/ /g, "-");
+
     if (location.pathname !== "/") {
       navigate(`/#${sectionId}`);
     } else {
       const el = document.getElementById(sectionId);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
-    setOpen(false);
   };
 
   return (
@@ -92,54 +77,58 @@ const Navbar = () => {
         >
           {/* Brand Identity / Logo */}
           <div
-            onClick={() => navigate("/")}
-            className="flex items-center gap-3 cursor-pointer group"
+            onClick={() => {
+              if (location.pathname !== "/") navigate("/");
+              else window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="flex items-center gap-3 cursor-pointer group select-none"
           >
-            <div className="relative w-11 h-11 rounded-xl overflow-hidden bg-white border border-slate-200/80 shadow-sm transition-all duration-300 group-hover:scale-[1.03]">
+            <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-white border border-slate-200/80 shadow-sm transition-all duration-300 group-hover:scale-[1.03]">
               <img
                 src={logo}
-                alt="Chisel Dental Clinic Logo"
+                alt="Pro-Smile Dental & Orthodontic Centre Logo"
                 className="w-full h-full object-contain p-1.5"
               />
             </div>
 
             <div className="flex flex-col">
               <span className="font-black text-base sm:text-lg text-slate-900 tracking-tight leading-none">
-                Chisel Dental™
+                Pro-Smile
               </span>
-              <span className="text-[9px] font-bold text-emerald-600 tracking-widest uppercase mt-0.5">
-                Premium Care
+              <span className="text-[9px] font-bold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent tracking-widest uppercase mt-1">
+                Dental Center
               </span>
             </div>
           </div>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop Floating Link Pill */}
           <div className="hidden md:flex items-center gap-1 bg-slate-50 border border-slate-100 p-1 rounded-full">
             {navItems.map((item) => (
               <button
-                key={item}
-                onClick={() => scrollTo(item)}
+                key={item.label}
+                onClick={() => scrollTo(item.target)}
                 className="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-900 rounded-full hover:bg-white transition-all duration-200 uppercase tracking-wider"
               >
-                {item}
+                {item.label}
               </button>
             ))}
-
-            <button
-              onClick={() => scrollTo("About Us")}
-              className="px-4 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-900 rounded-full hover:bg-white transition-all duration-200 uppercase tracking-wider"
-            >
-              About Us
-            </button>
           </div>
 
-          {/* Desktop Call to Action */}
-          <div className="hidden md:flex items-center">
+          {/* Desktop Call to Actions */}
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={() => navigate("/review")}
+              className="px-4 h-11 text-xs font-bold bg-amber-500/5 hover:bg-amber-500/10 border border-amber-500/20 text-amber-600 rounded-full transition-all duration-200 uppercase tracking-wider flex items-center gap-1.5 group active:scale-[0.98]"
+            >
+              <Star size={14} className="fill-amber-500 text-amber-500 group-hover:rotate-12 transition-transform" />
+              <span>Leave a Review</span>
+            </button>
+
             <Button
               onClick={() => scrollTo("Contact")}
-              className="rounded-full px-6 h-11 bg-slate-900 hover:bg-slate-950 text-white font-bold text-xs tracking-wider uppercase flex items-center gap-2 shadow-md shadow-slate-950/5 active:scale-[0.98] transition-all duration-150 border-0"
+              className="rounded-full px-6 h-11 bg-slate-900 hover:bg-slate-950 text-white font-bold text-xs tracking-wider uppercase flex items-center gap-2 shadow-md shadow-slate-950/5 border-0 group active:scale-[0.98] transition-all"
             >
-              <Calendar size={14} className="text-emerald-400" />
+              <Calendar size={14} className="text-amber-400 group-hover:rotate-12 transition-transform" />
               <span>Book Appointment</span>
             </Button>
           </div>
@@ -167,27 +156,32 @@ const Navbar = () => {
               <div className="flex flex-col gap-0.5">
                 {navItems.map((item) => (
                   <button
-                    key={item}
-                    onClick={() => scrollTo(item)}
+                    key={item.label}
+                    onClick={() => scrollTo(item.target)}
                     className="text-left px-4 py-3 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-all uppercase tracking-wider"
                   >
-                    {item}
+                    {item.label}
                   </button>
                 ))}
 
-                <button
-                  onClick={() => scrollTo("About Us")}
-                  className="text-left px-4 py-3 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-all uppercase tracking-wider"
-                >
-                  About Us
-                </button>
+                {/* Mobile Extra Navigation Integration */}
+                <div className="mt-2 pt-2 border-t border-slate-100 space-y-2">
+                  <button
+                    onClick={() => {
+                      navigate("/review");
+                      setOpen(false);
+                    }}
+                    className="w-full rounded-xl h-12 bg-amber-500/5 hover:bg-amber-500/10 border border-amber-500/20 text-amber-600 font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 transition-all"
+                  >
+                    <Star size={14} className="fill-amber-500 text-amber-500" />
+                    <span>Leave a Review</span>
+                  </button>
 
-                <div className="mt-2 pt-2 border-t border-slate-100">
                   <Button
                     onClick={() => scrollTo("Contact")}
-                    className="w-full rounded-xl h-12 bg-slate-900 hover:bg-slate-950 text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2"
+                    className="w-full rounded-xl h-12 bg-slate-900 hover:bg-slate-950 text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 border-0"
                   >
-                    <Calendar size={14} className="text-emerald-400" />
+                    <Calendar size={14} className="text-amber-400" />
                     <span>Book Appointment</span>
                   </Button>
                 </div>
@@ -197,9 +191,9 @@ const Navbar = () => {
         </AnimatePresence>
       </div>
 
-      {/* Dynamic Smooth Linear Page Scroll Indicator */}
+      {/* Dynamic Progress Bar */}
       <div
-        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-emerald-500 to-teal-500"
+        className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600"
         style={{
           width: `${progress}%`,
           transition: "width 0.15s ease-out",
