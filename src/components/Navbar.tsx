@@ -182,7 +182,7 @@ const Navbar = () => {
                 ))}
 
                 <button
-                  onClick={() => scrollTo("Contact Us")}
+                  onClick={() => scrollTo("Contact")}
                   className="text-left px-4 py-3 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-all uppercase tracking-wider"
                 >
                   Contact
