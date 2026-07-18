@@ -7,8 +7,8 @@ import logo from "@/assets/logo-dental.png";
 
 // Comprehensive section mapping across your landing ecosystem
 const navItems = [
-  { label: "Features", target: "Features" },
-  { label: "Process", target: "How It Works" },
+  { label: "Treatments", target: "Features" },
+  { label: "Dentist", target: "How It Works" },
   { label: "Why Us", target: "Why Choose Us" },
   { label: "Testimonials", target: "Testimonials" },
 ];
@@ -96,7 +96,7 @@ const Navbar = () => {
                 Pro-Smile
               </span>
               <span className="text-[9px] font-bold bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent tracking-widest uppercase mt-1">
-                Dental Center
+                Dental & Orthodontic Centre
               </span>
             </div>
           </div>

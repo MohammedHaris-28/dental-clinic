@@ -10,7 +10,10 @@ import {
   ArrowUpRight,
   Medal,
   Star,
-  Sparkle
+  Sparkle,
+  MapPin,
+  Clock,
+  UserCheck
 } from "lucide-react";
 
 // Local asset imports matching your dynamic gallery framework
@@ -23,7 +26,7 @@ import img4 from "@/assets/img 4.png";
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
-const DEFAULT_GLOW_COLOR = '245, 158, 11'; // Shifted to Premium Amber RGB to perfectly match your brand's theme
+const DEFAULT_GLOW_COLOR = '245, 158, 11'; 
 const MOBILE_BREAKPOINT = 768;
 
 const createParticleElement = (x: number, y: number, color: string): HTMLDivElement => {
@@ -93,7 +96,7 @@ const ParticleCard: React.FC<ParticleCardProps> = ({
 
   const initializeParticles = React.useCallback(() => {
     if (particlesInitialized.current || !cardRef.current) return;
-    const { width, height } = cardRef.current.getBoundingClientRect();
+    const { width, height = 0 } = cardRef.current.getBoundingClientRect();
     memoizedParticles.current = Array.from({ length: particleCount }, () =>
       createParticleElement(Math.random() * width, Math.random() * height, glowColor)
     );
@@ -173,14 +176,14 @@ const ParticleCard: React.FC<ParticleCardProps> = ({
       const centerY = rect.height / 2;
 
       if (enableTilt) {
-        const rotateX = ((y - centerY) / centerY) * -6; 
-        const rotateY = ((x - centerX) / centerX) * 6;
+        const rotateX = ((y - centerY) / centerY) * -4; 
+        const rotateY = ((x - centerX) / centerX) * 4;
         gsap.to(element, { rotateX, rotateY, duration: 0.1, ease: 'power2.out', transformPerspective: 1000 });
       }
 
       if (enableMagnetism) {
-        const magnetX = (x - centerX) * 0.03;
-        const magnetY = (y - centerY) * 0.03;
+        const magnetX = (x - centerX) * 0.02;
+        const magnetY = (y - centerY) * 0.02;
         magnetismAnimationRef.current = gsap.to(element, { x: magnetX, y: magnetY, duration: 0.3, ease: 'power2.out' });
       }
     };
@@ -195,7 +198,7 @@ const ParticleCard: React.FC<ParticleCardProps> = ({
       const ripple = document.createElement('div');
       ripple.style.cssText = `
         position: absolute; width: ${maxDistance * 2}px; height: ${maxDistance * 2}px; border-radius: 50%;
-        background: radial-gradient(circle, rgba(${glowColor}, 0.3) 0%, rgba(${glowColor}, 0.1) 40%, transparent 80%);
+        background: radial-gradient(circle, rgba(${glowColor}, 0.2) 0%, rgba(${glowColor}, 0.05) 40%, transparent 80%);
         left: ${x - maxDistance}px; top: ${y - maxDistance}px; pointer-events: none; z-index: 1000;
       `;
       element.appendChild(ripple);
@@ -217,7 +220,7 @@ const ParticleCard: React.FC<ParticleCardProps> = ({
   }, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, glowColor]);
 
   return (
-    <div ref={cardRef} className={`${className} particle-container magic-bento-card magic-bento-card--border-glow`} style={{ ...style, position: 'relative', overflow: 'hidden' }}>
+    <div ref={cardRef} className={`${className} particle-container magic-bento-card`} style={{ ...style, position: 'relative', overflow: 'hidden' }}>
       {children}
     </div>
   );
@@ -238,7 +241,7 @@ const GlobalSpotlight: React.FC<{
     spotlight.className = 'global-spotlight';
     spotlight.style.cssText = `
       position: fixed; width: 800px; height: 800px; border-radius: 50%; pointer-events: none;
-      background: radial-gradient(circle, rgba(${glowColor}, 0.12) 0%, rgba(${glowColor}, 0.06) 20%, transparent 60%);
+      background: radial-gradient(circle, rgba(${glowColor}, 0.08) 0%, rgba(${glowColor}, 0.03) 25%, transparent 60%);
       z-index: 200; opacity: 0; transform: translate(-50%, -50%); mix-blend-mode: screen;
     `;
     document.body.appendChild(spotlight);
@@ -304,30 +307,42 @@ const AdaptiveBentoHero = () => {
     {
       id: 1,
       image: img1, 
-      label: "PREMIUM ORTHODONTICS",
-      badge: "CLINICAL MASTERY",
-      accentBg: "bg-amber-500/10"
+      label: "Premium Orthodontics",
+      location: "Pro Smile Dental Clinic",
+      infoLabel: "Clinical Mastery",
+      infoValue: "Elite Track",
+      rating: "5.0",
+      accentBg: "bg-amber-500/5"
     },
     {
       id: 2,
       image: img2, 
-      label: "INVISALIGN SYSTEMS",
-      badge: "DIGITAL PLANNING",
-      accentBg: "bg-orange-500/10"
+      label: "Invisalign Aligners",
+      location: "Pro Smile Dental Clinic",
+      infoLabel: "Clarity Level",
+      infoValue: "Ultra-Invisible",
+      rating: "4.9",
+      accentBg: "bg-orange-500/5"
     },
     {
       id: 3,
       image: img3, 
-      label: "SMILE TRANSFORMATION",
-      badge: "LIVE STUDIO",
-      accentBg: "bg-yellow-500/10"
+      label: "Smile Transformations",
+      location: "Pro Smile Dental Clinic",
+      infoLabel: "Elite Expertise",
+      infoValue: "Happy Smiles",
+      rating: "5.0",
+      accentBg: "bg-yellow-500/5"
     },
     {
       id: 4,
       image: img4, 
-      label: "PEDIATRIC DENTISTRY",
-      badge: "PATIENT COMFORT",
-      accentBg: "bg-amber-600/10"
+      label: "Pediatric Dentistry",
+      location: "Pro Smile Dental Clinic",
+      infoLabel: "Patient Care",
+      infoValue: "Max Comfort",
+      rating: "5.0",
+      accentBg: "bg-amber-600/5"
     }
   ];
 
@@ -347,12 +362,11 @@ const AdaptiveBentoHero = () => {
   }, [DECK_CARDS.length]);
 
   return (
-    /* Increased mobile padding-top to pt-28 to push layout down gracefully below fixed navbars */
     <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden pt-28 pb-16 lg:py-0 antialiased selection:bg-amber-500/20 bento-section">
       <GlobalSpotlight gridRef={deckRef} disableAnimations={isMobile} glowColor="245, 158, 11" />
       
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/[0.02] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-500/[0.02] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/[0.02] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-orange-500/[0.02] rounded-full blur-[140px] pointer-events-none" />
 
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 xl:gap-16 items-center">
@@ -396,25 +410,24 @@ const AdaptiveBentoHero = () => {
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:max-w-md lg:max-w-none mx-auto lg:mx-0"
             >
               <Button
-  size="lg"
-  onClick={() =>
-    window.open(
-      "https://click4appointment.com/book-appointment-guest/959570/3914",
-      "_blank",
-      "noopener,noreferrer"
-    )
-  }
-  className="w-full sm:w-auto rounded-full px-8 h-16 bg-slate-900 hover:bg-slate-950 text-white font-bold text-sm tracking-wide flex items-center justify-center gap-3 shadow-xl shadow-slate-950/10 active:scale-[0.98] transition-all duration-200 border-0 group"
->
-  <Calendar className="h-4 w-4 text-amber-400 group-hover:rotate-12 transition-transform" />
-  <span>Book Appointment</span>
-  <ArrowUpRight
-    size={16}
-    className="text-slate-400 group-hover:text-white transition-all"
-  />
-</Button>
+                size="lg"
+                onClick={() =>
+                  window.open(
+                    "https://click4appointment.com/book-appointment-guest/959570/3914",
+                    "_blank",
+                    "noopener,noreferrer"
+                  )
+                }
+                className="w-full sm:w-auto rounded-full px-8 h-16 bg-slate-900 hover:bg-slate-950 text-white font-bold text-sm tracking-wide flex items-center justify-center gap-3 shadow-xl shadow-slate-950/10 active:scale-[0.98] transition-all duration-200 border-0 group"
+              >
+                <Calendar className="h-4 w-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+                <span>Book Appointment</span>
+                <ArrowUpRight
+                  size={16}
+                  className="text-slate-400 group-hover:text-white transition-all"
+                />
+              </Button>
 
-              {/* Direct Native Anchor Action Routing to Reception Line */}
               <a href="tel:+918971619006" className="w-full sm:w-auto">
                 <Button
                   variant="outline"
@@ -453,10 +466,11 @@ const AdaptiveBentoHero = () => {
             </motion.div>
           </div>
 
+          {/* RIGHT SIDE: BRIGHT FULL IMAGE CARD STACK WITH CLEAN TEXT CONTRAST */}
           <div className="lg:col-span-7 order-2 w-full flex flex-col items-center justify-center">
             <div 
               ref={deckRef} 
-              className="relative w-full max-w-[340px] sm:max-w-[420px] h-[440px] sm:h-[500px] flex items-center justify-center select-none"
+              className="relative w-full max-w-[330px] sm:max-w-[380px] h-[460px] sm:h-[510px] flex items-center justify-center select-none"
             >
               <AnimatePresence mode="popLayout">
                 {DECK_CARDS.map((card, idx) => {
@@ -472,57 +486,93 @@ const AdaptiveBentoHero = () => {
                         zIndex: DECK_CARDS.length - relativeIndex,
                         transformOrigin: "bottom center"
                       }}
-                      initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                      initial={{ opacity: 0, scale: 0.9, y: 20 }}
                       animate={{ 
-                        opacity: 1 - relativeIndex * 0.20, 
+                        opacity: 1 - relativeIndex * 0.15, 
                         scale: 1 - relativeIndex * 0.04,
-                        y: relativeIndex * -16,
+                        y: relativeIndex * 14, 
+                        rotate: relativeIndex * (idx % 2 === 0 ? 2 : -2)
                       }}
                       exit={{ 
                         opacity: 0, 
-                        x: -300, 
-                        scale: 0.85, 
-                        rotate: -12,
-                        transition: { duration: 0.55, ease: [0.4, 0, 0.2, 1] }
+                        x: 320, 
+                        scale: 0.9, 
+                        rotate: 8,
+                        transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
                       }}
-                      transition={{ duration: 0.65, ease: [0.25, 1, 0.5, 1] }}
+                      transition={{ duration: 0.55, ease: [0.25, 1, 0.5, 1] }}
                       className="absolute inset-0 w-full h-full"
                     >
                       <ParticleCard 
                         disableAnimations={isMobile || !isTopCard}
                         glowColor="245, 158, 11"
-                        className="w-full h-full rounded-[32px] bg-slate-900 border border-slate-800/80 shadow-2xl flex flex-col overflow-hidden group"
-                        style={{'--glow-color': '245, 158, 11'} as React.CSSProperties}
+                        className="w-full h-full rounded-[28px] bg-white border border-slate-100 shadow-[0_20px_50px_rgba(15,23,42,0.12)] flex flex-col justify-between overflow-hidden group p-6 sm:p-7"
                       >
-                        <div className={`absolute inset-0 transition-all duration-1000 opacity-40 z-10 mix-blend-multiply ${card.accentBg}`} />
-                        
-                        <img
-                          src={card.image}
-                          className="w-full h-full object-cover absolute inset-0 pointer-events-none transition-transform duration-1000 ease-out group-hover:scale-[1.04]"
-                          alt={card.label}
-                        />
-
-                        <div className="absolute top-6 left-6 z-20 flex items-center gap-2">
-                          <span className="bg-slate-950/70 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-mono tracking-widest text-white border border-white/10 uppercase font-bold">
-                            {card.badge}
-                          </span>
+                        {/* BRIGHT FULL IMAGE BACKGROUND */}
+                        <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden rounded-[28px]">
+                          <div className={`absolute inset-0 transition-all duration-1000 opacity-5 z-10 ${card.accentBg}`} />
+                          <img
+                            src={card.image}
+                            className="w-full h-full object-cover absolute inset-0 transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                            alt={card.label}
+                          />
+                          {/* Refined gradient mask condensed purely at the bottom to boost upper bright image exposure */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent to-[65%] z-10" />
                         </div>
 
-                        <div className="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center text-slate-900 border border-slate-200/30 shadow-md z-20 transition-transform duration-300 hover:scale-105">
-                          <ArrowUpRight size={16} className="text-amber-600" />
-                        </div>
-
-                        <div className="mt-auto w-full bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-6 sm:p-8 pt-24 z-20 text-left">
-                          <div className="flex items-center gap-2 text-amber-400 mb-2">
-                            <Medal size={14} className="fill-amber-400/10" />
-                            <span className="text-[10px] font-black tracking-widest uppercase">Top Elite Centre</span>
+                        {/* TOP SECTION OVERLAY CONTENT */}
+                        <div className="w-full flex justify-between items-start z-20 relative">
+                          <div className="bg-slate-900/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-white font-mono text-[10px] tracking-widest uppercase font-bold">
+                            {card.infoValue}
                           </div>
-                          <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight group-hover:text-amber-500 transition-colors">
-                            {card.label}
-                          </h3>
+
+                          {/* Premium Top Right White Rating Badge */}
+                          <div className="bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1 border border-white/20">
+                            <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
+                            <span className="text-xs font-black text-slate-800">{card.rating}</span>
+                          </div>
                         </div>
 
-                        <Sparkle size={14} className="text-amber-400/30 absolute bottom-6 right-6 hidden sm:block z-20" />
+                        {/* BOTTOM SECTION OVERLAY CONTENT */}
+                        <div className="w-full z-20 relative space-y-3.5">
+                          
+                          <div>
+                            <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight mb-1 group-hover:text-amber-400 transition-colors drop-shadow-sm">
+                              {card.label}
+                            </h3>
+                            
+                            <div className="flex items-center gap-1.5 text-slate-100 font-medium text-xs sm:text-sm">
+                              <MapPin size={14} className="text-amber-400" />
+                              <span>{card.location}</span>
+                            </div>
+                          </div>
+
+                          {/* Divider Rows inside full layout overlay view */}
+                          <div className="space-y-2.5 pt-0.5">
+                            <div className="w-full h-px bg-white/20" />
+                            
+                            <div className="flex justify-between items-center text-xs sm:text-sm">
+                              <div className="flex items-center gap-1.5 text-slate-200 font-medium">
+                                <UserCheck size={14} className="text-amber-400" />
+                                <span>{card.infoLabel}</span>
+                              </div>
+                              <span className="font-bold text-white tracking-tight">{card.infoValue}</span>
+                            </div>
+
+                            <div className="w-full h-px bg-white/20" />
+
+                            <div className="flex justify-between items-center text-xs sm:text-sm">
+                              <div className="flex items-center gap-1.5 text-slate-200 font-medium">
+                                <Clock size={14} className="text-amber-400" />
+                                <span>Availability</span>
+                              </div>
+                              <span className="font-extrabold text-amber-400 tracking-tight bg-white/15 backdrop-blur-md px-2.5 py-0.5 rounded-md border border-white/10 shadow-sm">
+                                Book Now
+                              </span>
+                            </div>
+                          </div>
+
+                        </div>
                       </ParticleCard>
                     </motion.div>
                   );
@@ -530,6 +580,7 @@ const AdaptiveBentoHero = () => {
               </AnimatePresence>
             </div>
 
+            {/* Pagination Controls Indicator */}
             <div className="w-full mt-8 flex justify-center items-center gap-2 px-1">
               {DECK_CARDS.map((_, index) => (
                 <button
@@ -538,7 +589,7 @@ const AdaptiveBentoHero = () => {
                   className={`h-1.5 rounded-full transition-all duration-500 ease-in-out ${
                     index === activeIndex ? "w-9 bg-slate-900" : "w-1.5 bg-slate-200 hover:bg-slate-300"
                   }`}
-                  aria-label={`Jump to stack view slide index layer frame ${index + 1}`}
+                  aria-label={`Jump to slide ${index + 1}`}
                 />
               ))}
             </div>

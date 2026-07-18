@@ -184,17 +184,7 @@ const TestimonialsSection = () => {
                   </p>
                 </div>
 
-                {testimonial.link !== "#" && (
-                  <a 
-                    href={testimonial.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-lg bg-amber-500/[0.06] border border-amber-500/20 flex items-center justify-center text-amber-600 flex-shrink-0 hover:bg-amber-600 hover:text-white transition-all duration-300 shadow-sm"
-                    title="Verify review source"
-                  >
-                    <ExternalLink size={12} />
-                  </a>
-                )}
+                
               </div>
             </motion.div>
           ))}
